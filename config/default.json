@@ -1,0 +1,19 @@
+{
+    "session": {
+        "tokenKey": "404E635266556A586E327234753778214125442A472D4B6150645367566B5970",
+        "timeout": 300
+    },
+    "db": {
+        "connectionOptions": {
+            "useNewUrlParser": true,
+            "useUnifiedTopology": true
+        },
+        "connectionString": "mongodb://localhost/TestDB"
+    },
+    "email": {
+        "tokenKey": "423F4528482B4D6251655468576D5A7134743777217A25432646294A404E6352",
+        "host": "smtp.ethereal.email", 
+        "user": "javier.abernathy70@ethereal.email",
+        "pass": "Cdw2cHfqcc2pvWccWq"
+    }
+}

@@ -1,0 +1,7 @@
+# files to ignore git.
+# see: https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+
+#Dirs
+Test
+node_modules
+certificates

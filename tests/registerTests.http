@@ -1,0 +1,44 @@
+// Registriere neuen User
+###
+POST https://localhost/register
+Content-Type: application/json
+
+{
+    "userID": "bernhardt",
+    "email": "manfredius@gmail.com",
+    "userName": "Manfred Mustermann",
+    "password": "asdf"
+}
+
+// Lege User normal an und verifiziere über ihn
+###
+POST https://localhost/publicUsers
+Content-Type: application/json
+
+{
+    "userID": "tim",
+    "userName": "Manfred Mustermann",
+    "password": "asdf"
+}
+
+//als tim anmelden
+###
+# @name logintimCorrect
+GET https://localhost/authenticate
+Authorization: Basic tim:asdf
+
+@timToken = {{logintimCorrect.response.headers.Authorization}}
+
+// Verifizierung
+###
+POST https://localhost/register/verification
+Authorization: {{timToken}}
+Content-Type: application/json
+
+{
+    "email": "timbo@gmail.com"
+}
+
+//User ausgeben, um Verifizierung zu bestätigen
+###
+GET https://localhost/publicUsers

@@ -1,0 +1,36 @@
+---
+name: Main
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check code
+        uses: actions/checkout@v2
+      
+      - name: Start MongoDB Version 5.0
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: "5.0"
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Open https
+        run: 
+          sudo apt-get install libcap2-bin &&
+          sudo setcap cap_net_bind_service=+ep /opt/hostedtoolcache/node/16.14.2/x64/bin/node
+
+      - name: Run Test
+        run: npm test
+
+        

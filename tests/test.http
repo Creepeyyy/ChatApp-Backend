@@ -1,0 +1,58 @@
+###
+# @name loginAdminCorrect
+POST http://localhost:8080/authenticate
+Authorization: Basic admin:123
+
+@adminToken = {{loginAdminCorrect.response.headers.Authorization}}
+
+###
+GET http://localhost:8080/register/verification
+Authorization: {{adminToken}}
+
+###
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+    "userID": "test11asssaa",
+    "password": "test",
+    "email": "test@dumm.com"
+}
+###
+http://localhost:8080/publicUser
+
+###
+POST http://localhost:8080/publicUser
+Content-Type: application/json
+
+{
+    "userID": "güntha2",
+    "password": "asdf",
+    "email": "test2aaaa@test.com"
+}
+
+###
+DELETE http://localhost:8080/publicUser
+Content-Type: application/json
+
+{
+    "userID": "güntha2"
+}
+
+###
+POST http://localhost:8080/publicUser/getByUserID
+Content-Type: application/json
+
+{
+    "userID": "güntha2"
+}
+
+###
+PUT http://localhost:8080/publicUser
+Content-Type: application/json
+
+{
+    "userID": "güntha2",
+    "userName": "tesa2t",
+    "email": "tesaa2aaa@test.test"
+}

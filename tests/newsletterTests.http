@@ -1,0 +1,22 @@
+// Login mit Basic Authentication mit korrekten Credentials admin:123
+###
+# @name loginAdminCorrect
+GET https://localhost/authenticate
+Authorization: Basic YWRtaW46MTIz
+
+@adminToken = {{loginAdminCorrect.response.headers.Authorization}}
+
+//Newsletter versenden
+###
+POST https://localhost/newsletter
+Authorization: {{adminToken}}
+Content-Type: application/json
+
+{
+    "subject": "This is a Newsletter! ",
+    "text": "Hello guys!"
+}
+
+//User ausgeben, um Abmelden zu bestätigen
+###
+GET https://localhost/publicUsers
